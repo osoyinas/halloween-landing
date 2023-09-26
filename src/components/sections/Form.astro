@@ -3,6 +3,7 @@ import Container from "../shared/Container.astro";
 import Title from "../shared/Title.astro";
 import Button from "../shared/Button.astro";
 import Label from "../elements/Label.astro";
+import Paragraph from "../shared/Paragraph.astro";
 if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
@@ -25,44 +26,57 @@ if (Astro.request.method === "POST") {
     </div>
     <form method="POST" class="flex flex-col gap-5  mx-auto w-full items-center">
       <Label >
-        Nombre:
+        <Paragraph>Nombre:</Paragraph>
         <input
           class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
           type="text"
           name="username"
+          placeholder="Carolina Durante"
           required
         />
       </Label>
       <Label>
-        Email:
+        <Paragraph>Email:</Paragraph>
         <input
           class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
           type="email"
           name="email"
+          placeholder="carolinadurante@gmail.com"
           required
         />
       </Label>
       <Label>
-        Número de teléfono:
+        <Paragraph>Número de teléfono:</Paragraph>
         <input
           class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
           type="text"
           name="phone-number"
+          placeholder="646 658 814"
           required
           minlength="6"
         />
       </Label>
       <Label>
-        Número de teléfono:
+      <Paragraph>Acompañantes:</Paragraph>
         <input
           class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
-          type="text"
+          type="number"
+          step="1"
           name="phone-number"
           required
           minlength="6"
+          value="0"
         />
       </Label>
-      <Button className="w-1/2" variant="primary">Enviar</Button>
+      <Label>
+        <Paragraph>Precio total:</Paragraph>
+        <Paragraph><span class="text-3xl">12€</span></Paragraph>
+      </Label>
+      <Button className="w-full sm:w-1/2" variant="primary">Enviar</Button>
     </form>
+    <Paragraph className="text-center">
+      Esta información la utilizaremos para contactar contigo e indicarte los pasos para el pago. Al completar el formulario te llegará un correo con la entrada.
+      Esta entrada funcionará hasta completar el pago.
+    </Paragraph>
   </Container>
 </section>
