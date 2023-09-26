@@ -1,0 +1,68 @@
+---
+import Container from "../shared/Container.astro";
+import Title from "../shared/Title.astro";
+import Button from "../shared/Button.astro";
+import Label from "../elements/Label.astro";
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("username");
+    const email = data.get("email");
+    const password = data.get("password");
+    // Do something with the data
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+---
+
+<section id="reserve" class="pt-8">
+  <Container className="space-y-10 md:sapce-y-12 p-16">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <Title>Datos de contacto</Title>
+    </div>
+    <form method="POST" class="flex flex-col gap-5  mx-auto w-full items-center">
+      <Label >
+        Nombre:
+        <input
+          class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
+          type="text"
+          name="username"
+          required
+        />
+      </Label>
+      <Label>
+        Email:
+        <input
+          class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
+          type="email"
+          name="email"
+          required
+        />
+      </Label>
+      <Label>
+        Número de teléfono:
+        <input
+          class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
+          type="text"
+          name="phone-number"
+          required
+          minlength="6"
+        />
+      </Label>
+      <Label>
+        Número de teléfono:
+        <input
+          class="p-2 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
+          type="text"
+          name="phone-number"
+          required
+          minlength="6"
+        />
+      </Label>
+      <Button className="w-1/2" variant="primary">Enviar</Button>
+    </form>
+  </Container>
+</section>
