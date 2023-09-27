@@ -24,7 +24,7 @@ if (Astro.request.method === "POST") {
     <div class="text-center max-w-3xl mx-auto space-y-4">
       <Title>Datos de contacto</Title>
     </div>
-    <FormState></FormState>
+    <FormState client:load/>
     <Paragraph className="text-center">
       Esta información la utilizaremos para contactar contigo e indicarte los pasos para el pago. Al completar el formulario te llegará un correo con la entrada.
       Esta entrada no funcionará hasta completar el pago.
