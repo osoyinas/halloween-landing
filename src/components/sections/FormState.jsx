@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import { InputWithLabel } from "../elements/InputWithLabel";
 import axios from "axios";
-import { BASE_URL } from "../shared/constants";
-import Container from "../shared/Container.astro";
-import Paragraph from "../shared/Paragraph.astro";
 
 const price = 12;
-export function FormState() {
+export function FormState({apiURL}) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -19,8 +16,9 @@ export function FormState() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(apiURL);
     axios
-      .post(BASE_URL, {
+      .post(apiURL, {
         titular: name,
         email: email,
         number: number,
@@ -30,7 +28,7 @@ export function FormState() {
         setSend(true);
       })
       .catch(function (error) {
-        console.log(error);
+        setSend(true);
       });
   };
 

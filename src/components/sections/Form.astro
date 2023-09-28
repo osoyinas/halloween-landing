@@ -3,10 +3,12 @@ import Container from "../shared/Container.astro";
 import Title from "../shared/Title.astro";
 import Paragraph from "../shared/Paragraph.astro";
 import {FormState} from "./FormState"
+
+const API_URL = import.meta.env.API_URL
 ---
 
 <section id="reserve" class="pt-8">
   <Container className="space-y-10 md:sapce-y-12 p-16">
-    <FormState client:load/>
+    <FormState apiURL={API_URL} client:load/>
   </Container>
 </section>
