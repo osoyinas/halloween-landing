@@ -28,7 +28,7 @@ export function FormState({apiURL}) {
         setSend(true);
       })
       .catch(function (error) {
-        setSend(true);
+        setSend(false);
       });
   };
 
