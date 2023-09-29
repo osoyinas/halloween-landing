@@ -14,22 +14,40 @@ export function FormState({apiURL}) {
   const [totalPrice, setTotalPrice] = useState(12);
   const [send, setSend] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit =async (event) => {
     event.preventDefault();
-    console.log(apiURL);
-    axios
-      .post(apiURL, {
-        titular: name,
-        email: email,
-        number: number,
-        companions: companionsList,
-      })
-      .then(function (response) {
-        setSend(true);
-      })
-      .catch(function (error) {
-        setSend(false);
-      });
+    console.log("POST " + apiURL);
+    const axiosInstance = axios.create({
+      baseURL: 'http://localhost:8000',
+   });
+
+   try {
+    // Obtener el token CSRF del servidor
+    // Configurar las cabeceras con el token CSRF
+    // Datos para la solicitud POST
+    const postData = {
+      titular: name,
+      email: email,
+      number: number,
+      companions: companionsList,
+    };
+
+    // Realizar la solicitud POST con la instancia configurada de Axios
+    const postResponse = await axiosInstance.post(apiURL, postData);
+
+    // Manejar la respuesta
+    if (postResponse.status === 201) {
+      setSend(true);
+    } else {
+      setSend(false);
+    }
+  } catch (error) {
+    // Manejar errores
+    console.error('Error al enviar la solicitud POST:', error);
+    setSend(false);
+  }
+
+    
   };
 
   const handleCompanionNameChange = (index, value) => {
