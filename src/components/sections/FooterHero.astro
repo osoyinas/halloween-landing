@@ -1,0 +1,22 @@
+---
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+import BtnLink from "../shared/BtnLink.astro";
+---
+
+<section id="footer-hero">
+  <Container className="space-y-10 md:sapce-y-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <Title>¿A qué estás esperando?</Title>
+      <Paragraph className="py-6">
+        Ahora que conoces lo que ofrecemos, ¡Reserva tu entrada y únete a la
+        diversión de 'Halloween 13!"
+      </Paragraph>
+      <div class="flex flex-col gap-5 w-full ">
+        <BtnLink text="Reservar" variant="primary" href="/reservar" />
+        <BtnLink text="Contactar" variant="secondary" href="https://www.instagram.com/kike4ever/" />
+      </div>
+    </div>
+  </Container>
+</section>
