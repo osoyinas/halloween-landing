@@ -3,10 +3,17 @@ import { InputWithLabel } from "../elements/InputWithLabel";
 import axios from "axios";
 
 const price = 12;
-export function FormState({apiURL}) {
+const validateEmail = (value) => {
+  // You can use a regular expression to validate the email format.
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+  return emailRegex.test(value);
+};
+
+export function FormState({ apiURL }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [companions, setCompanions] = useState(0);
   const [companionsList, setCompanionsList] = useState(
     Array.from({ length: companions }, () => "")
@@ -14,40 +21,39 @@ export function FormState({apiURL}) {
   const [totalPrice, setTotalPrice] = useState(12);
   const [send, setSend] = useState(false);
 
-  const handleSubmit =async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("POST " + apiURL);
     const axiosInstance = axios.create({
-      baseURL: 'http://localhost:8000',
-   });
-
-   try {
-    // Obtener el token CSRF del servidor
-    // Configurar las cabeceras con el token CSRF
-    // Datos para la solicitud POST
-    const postData = {
-      titular: name,
-      email: email,
-      number: number,
-      companions: companionsList,
-    };
-
-    // Realizar la solicitud POST con la instancia configurada de Axios
-    const postResponse = await axiosInstance.post(apiURL, postData);
-
-    // Manejar la respuesta
-    if (postResponse.status === 201) {
-      setSend(true);
+      baseURL: apiURL,
+    });
+    if (!validateEmail(email)) {
+      setEmailError("El email no es válido");
+      console.log("email no correcto");
     } else {
+      setEmailError("");
+    }
+    try {
+      const postData = {
+        titular: name,
+        email: email,
+        number: number,
+        companions: companionsList,
+      };
+
+      // Realizar la solicitud POST con la instancia configurada de Axios
+      const postResponse = await axiosInstance.post(apiURL, postData);
+
+      // Manejar la respuesta
+      if (postResponse.status === 201) {
+        setSend(true);
+      } else {
+        setSend(false);
+      }
+    } catch (error) {
+      // Manejar errores
+      console.error("Error al enviar la solicitud POST:", error);
       setSend(false);
     }
-  } catch (error) {
-    // Manejar errores
-    console.error('Error al enviar la solicitud POST:', error);
-    setSend(false);
-  }
-
-    
   };
 
   const handleCompanionNameChange = (index, value) => {
@@ -83,13 +89,15 @@ export function FormState({apiURL}) {
         />
         <InputWithLabel
           label="Email"
-          type="email"
+          type="text"
           name="email"
           value={email}
           onChange={(e) => {
+            setEmailError("")
             setEmail(e.target.value);
           }}
           required
+          error={emailError}
         />
         <InputWithLabel
           label="teléfono"
@@ -129,7 +137,7 @@ export function FormState({apiURL}) {
           label="Total"
           value={`${1 + companions} x ${price} = ${totalPrice}€`}
           readonly
-          className={`text-4xl text-right bg-transparent  px-0 border-0 font-bold`}
+          className={`text-2xl sm:text-3xl md:text-4xl text-right bg-transparent  px-0 border-0 font-bold`}
         ></InputWithLabel>
 
         <button
