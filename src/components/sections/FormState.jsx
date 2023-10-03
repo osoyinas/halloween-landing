@@ -20,6 +20,7 @@ export function FormState({ apiURL }) {
   );
   const [totalPrice, setTotalPrice] = useState(12);
   const [send, setSend] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,12 +48,12 @@ export function FormState({ apiURL }) {
       if (postResponse.status === 201) {
         setSend(true);
       } else {
-        setSend(false);
+        setError(true);
       }
     } catch (error) {
       // Manejar errores
       console.error("Error al enviar la solicitud POST:", error);
-      setSend(false);
+      setError(true);
     }
   };
 
@@ -65,6 +66,8 @@ export function FormState({ apiURL }) {
   useEffect(() => {
     setTotalPrice(companions * price + price);
   }, [companions]);
+
+  
   return !send ? (
     <>
       <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -93,7 +96,7 @@ export function FormState({ apiURL }) {
           name="email"
           value={email}
           onChange={(e) => {
-            setEmailError("")
+            setEmailError("");
             setEmail(e.target.value);
           }}
           required
@@ -156,13 +159,38 @@ export function FormState({ apiURL }) {
       </form>
     </>
   ) : (
+    <FeedbackMessage error={error} />
+  );
+}
+
+function FeedbackMessage({ error }) {
+  return !error ? <NotErrorMessage/> : <ErrorMessage />
+  ;
+}
+function NotErrorMessage() {
+  return (
     <>
       <h1 className="text-heading-1 font-semibold text-2xl text-center sm:text-3xl md:text-4xl">
         ¡Felicidades!
       </h1>
       <p className="md:text-lg text-heading-3 text-center w-full sm:w-1/2 mx-auto my-8">
-        La reserva ha sido procesada correctamente. Espere a que contactemos con usted, le recordamos que el pago debe hacerle en bizum al +34 646 65 88 14. Ante
-        cualquier duda o sugerencia contacte a +34 646 65 88 14 o @kike4ever en instagram.
+        La reserva ha sido procesada correctamente. Espere a que contactemos con
+        usted, le recordamos que el pago debe hacerse en bizum al +34 646 65 88
+        14. Ante cualquier duda o sugerencia contacte a +34 646 65 88 14 o
+        @kike4ever en instagram.
+      </p>
+    </>
+  );
+}
+function ErrorMessage() {
+  return (
+    <>
+      <h1 className="text-heading-1 font-semibold text-2xl text-center sm:text-3xl md:text-4xl">
+        Algo no ha ido como debía
+      </h1>
+      <p className="md:text-lg text-heading-3 text-center w-full sm:w-1/2 mx-auto my-8">
+        Ha ocurrido un error procesando el ticket, intentalo de nuevo más tarde
+        o ponte en contacto con alguno de nuestros administradores.
       </p>
     </>
   );
