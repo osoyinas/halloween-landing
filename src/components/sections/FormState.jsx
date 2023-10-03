@@ -46,7 +46,7 @@ export function FormState({ apiURL }) {
 
       // Manejar la respuesta
       if (postResponse.status === 201) {
-        setSend(true);
+      setSend(true);
       } else {
         setError(true);
       }
@@ -67,8 +67,8 @@ export function FormState({ apiURL }) {
     setTotalPrice(companions * price + price);
   }, [companions]);
 
-  
-  return !send ? (
+
+  return !send && !error? (
     <>
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <h1 className="text-heading-1 font-semibold text-2xl sm:text-3xl md:text-4xl">
@@ -158,13 +158,12 @@ export function FormState({ apiURL }) {
         </p>
       </form>
     </>
-  ) : (
-    <FeedbackMessage error={error} />
-  );
+  ) : <FeedbackMessage error={error} />
+  ;
 }
 
 function FeedbackMessage({ error }) {
-  return !error ? <NotErrorMessage/> : <ErrorMessage />
+  return (!error ? <NotErrorMessage/> : <ErrorMessage />)
   ;
 }
 function NotErrorMessage() {
@@ -186,7 +185,7 @@ function ErrorMessage() {
   return (
     <>
       <h1 className="text-heading-1 font-semibold text-2xl text-center sm:text-3xl md:text-4xl">
-        Algo no ha ido como debía
+        Algo no ha ido como debería...
       </h1>
       <p className="md:text-lg text-heading-3 text-center w-full sm:w-1/2 mx-auto my-8">
         Ha ocurrido un error procesando el ticket, intentalo de nuevo más tarde
