@@ -161,9 +161,8 @@ export function FormState({ apiURL }) {
         ¡Felicidades!
       </h1>
       <p className="md:text-lg text-heading-3 text-center w-full sm:w-1/2 mx-auto my-8">
-        La reserva ha sido procesada correctamente. En su buzón de correo
-        electrónico ({email}) debe haber recibido un correo con la entrada. Ante
-        cualquier duda o sugerencia contacte a +34 646 65 88 14.
+        La reserva ha sido procesada correctamente. Espere a que contactemos con usted, le recordamos que el pago debe hacerle en bizum al +34 646 65 88 14. Ante
+        cualquier duda o sugerencia contacte a +34 646 65 88 14 o @kike4ever en instagram.
       </p>
     </>
   );
