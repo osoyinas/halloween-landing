@@ -69,7 +69,8 @@ export function FormState({ apiURL }) {
 
 
   return !send && !error? (
-    <>
+    <div className="animate-fade-down animate-once animate-duration-[1000ms] animate-delay-0 animate-ease-in-out
+    ">
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <h1 className="text-heading-1 font-semibold text-2xl sm:text-3xl md:text-4xl">
           Datos de contacto
@@ -157,7 +158,7 @@ export function FormState({ apiURL }) {
           de tus acompañantes. Se puede comprar las entradas por separado.
         </p>
       </form>
-    </>
+    </div>
   ) : <FeedbackMessage error={error} />
   ;
 }
