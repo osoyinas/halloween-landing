@@ -82,7 +82,7 @@ export function FormState({ apiURL }) {
         className="flex flex-col gap-5  mx-auto w-full items-center py-8"
       >
         <InputWithLabel
-          label="Nombre"
+          label="Nombre completo"
           type="text"
           name="name"
           value={name}
