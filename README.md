@@ -1,53 +1,46 @@
-<h1>AgenceX Landing page</h1>
+# Halloween 13 Landing Page 🎃
 
-A simple landing page for a digital agency
+¡Bienvenido a Halloween 13 Landing Page! Esta aplicación, desarrollada con Astro, te permite crear una atractiva página de destino para tu evento de Halloween y gestionar las inscripciones de manera sencilla.
 
-![AgenceX light Theme](./screens/demoLight.webp)
-![AgenceX Dark Theme](./screens/demoDark.webp)
+## Guía de Instalación
 
+Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local:
 
-## Tools
-- TailwindCSS v3.3
-- AstroJs v3
+### Requisitos previos
 
+Asegúrate de tener instalados [Node.js](https://nodejs.org/) y [npm](https://www.npmjs.com/) en tu máquina.
 
-## 🚀 Project Structure
+### Pasos de instalación
 
-Inside of your Astro project, you'll see the following folders and files:
+1. Clona este repositorio en tu máquina local:
 
-```
-/
-├── public/
-│   ├── images/
-│   ├── logos/*
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── blocks/*
-│   │   ├── cards/*
-│   │   ├── elements/*
-│   │   ├── sections/*
-│   │   ├── shared/*
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-├── package.json
-└── tailwind.config.cjs
-```
+   ```bash
+   git clone https://github.com/tuusuario/halloween-landing.git
+   ```
 
+2. Navega al directorio del proyecto:
 
-## 🧞 Commands
+   ```bash
+   cd halloween-halloween-landing
+   ```
 
-All commands are run from the root of the project, from a terminal:
+3. Instala las dependencias:
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:4321`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+   ```bash
+   npm install
+   ```
 
+### Ejecutar la aplicación
 
+4. Inicia la aplicación en modo de desarrollo:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Abre tu navegador y visita [http://localhost:3000](http://localhost:3000) para ver la Landing Page de Halloween 13 en acción.
+
+## Características
+
+- Formulario de inscripción integrado para gestionar participantes.
+- Visualización elegante y organizada de todos los datos recopilados.
